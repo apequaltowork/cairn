@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cairn — Support</title>
+<style>
+  :root {
+    --accent: #c26b3c;
+    --ink: #2b2822;
+    --sub: #6b665c;
+    --bg: #fdfbf8;
+    --border: #e8e2d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    width: fit-content;
+  }
+  .brand .mark {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, #F2E6D2, #eddcc2);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(43,40,34,0.06);
+  }
+  .brand .mark span { display:block; width:10px; height:10px; border-radius:50%; background: var(--accent); }
+  .brand b { font-size: 17px; color: var(--ink); }
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  h2 { font-size: 18px; margin: 36px 0 12px; color: var(--ink); }
+  p { color: #3a362f; }
+  .lead { font-size: 16px; color: var(--sub); margin-bottom: 40px; }
+  .contact-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 16px 0 8px;
+  }
+  .contact-card a {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .contact-card a:hover { text-decoration: underline; }
+  .contact-card p { margin: 6px 0 0; color: var(--sub); font-size: 14px; }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 8px; color: #3a362f; }
+  a { color: var(--accent); }
+  .footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--sub); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="../">
+    <span class="mark"><span></span></span>
+    <b>Cairn</b>
+  </a>
+
+  <h1>Support</h1>
+  <p class="lead">
+    Need help with Cairn, found a bug, or have an idea for a feature?
+    Here's how to reach out.
+  </p>
+
+  <div class="contact-card">
+    <a href="mailto:apequaltowork@gmail.com">apequaltowork@gmail.com</a>
+    <p>Bug reports, feature requests, and general questions all welcome. Include your Chrome version and, for bugs, the steps that led to it if you can.</p>
+  </div>
+
+  <h2>Before you email — quick fixes</h2>
+  <ul>
+    <li><strong>A tab didn't restore.</strong> Chrome blocks extensions from reopening its own internal pages (<code>chrome://</code>), and some URLs expire or break over time. Cairn skips these rather than failing, and tells you how many were skipped.</li>
+    <li><strong>Keyboard shortcut doesn't work.</strong> Another extension may have claimed it — go to <code>chrome://extensions/shortcuts</code> and reassign.</li>
+    <li><strong>Old-tab detection seems off.</strong> Chrome doesn't expose exactly when a tab was opened, so Cairn uses the most recent time you viewed it, falling back to browsing history. Tabs restored from a previous browser session may show unusual ages.</li>
+    <li><strong>Lost your workspaces.</strong> If Chrome's data for the extension was cleared, or it was uninstalled and reinstalled, local storage is wiped — this is why <strong>Settings → Export data</strong> is worth doing occasionally as a backup.</li>
+  </ul>
+
+  <div class="footer">
+    See also: <a href="../privacy/">Privacy Policy</a>
+    &nbsp;·&nbsp; <a href="../">Home</a>
+  </div>
+</div>
+</body>
+</html>

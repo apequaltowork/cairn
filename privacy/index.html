@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cairn — Privacy Policy</title>
+<style>
+  :root {
+    --accent: #c26b3c;
+    --ink: #2b2822;
+    --sub: #6b665c;
+    --bg: #fdfbf8;
+    --border: #e8e2d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    width: fit-content;
+  }
+  .brand .mark {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, #F2E6D2, #eddcc2);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(43,40,34,0.06);
+  }
+  .brand .mark span { display:block; width:10px; height:10px; border-radius:50%; background: var(--accent); }
+  .brand b { font-size: 17px; color: var(--ink); }
+  .updated { color: var(--sub); font-size: 13px; margin-bottom: 40px; }
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  h2 { font-size: 18px; margin: 40px 0 12px; color: var(--ink); }
+  p { color: #3a362f; }
+  .lead { font-size: 16px; color: var(--sub); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--sub); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 6px; color: #3a362f; }
+  a { color: var(--accent); }
+  code { background: #f1ece2; padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
+  .footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--sub); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="../">
+    <span class="mark"><span></span></span>
+    <b>Cairn</b>
+  </a>
+
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: August 25, 2026</p>
+
+  <p class="lead">
+    Cairn is a Chrome browser extension that helps you organize open tabs
+    into named workspaces, search across your browsing, and clean up tab
+    clutter. This policy explains what data the extension touches, where
+    it lives, and what — if anything — ever leaves your device.
+  </p>
+
+  <h2>Summary</h2>
+  <p>
+    Cairn stores everything locally in your browser. There is no account,
+    no server, no backend, and no telemetry of any kind. The only thing
+    Cairn ever sends off your device is an AI request you explicitly and
+    manually trigger, using your own API key, to an AI provider you
+    choose — and it shows you exactly what would be sent before it sends
+    anything.
+  </p>
+
+  <h2>What data Cairn accesses, and why</h2>
+  <table>
+    <tr><th>Data</th><th>Why Cairn accesses it</th><th>Where it goes</th></tr>
+    <tr>
+      <td>Open tabs and tab groups</td>
+      <td>To save your current browser as a workspace, and to restore, close, pin, or group tabs on your command</td>
+      <td>Stored locally only (<code>chrome.storage.local</code>)</td>
+    </tr>
+    <tr>
+      <td>Browsing history</td>
+      <td>Searched locally to power universal search and to detect "old" (stale) tabs</td>
+      <td>Never leaves your device; not stored by Cairn, only queried live</td>
+    </tr>
+    <tr>
+      <td>Bookmarks</td>
+      <td>Searched locally to power universal search</td>
+      <td>Never leaves your device; not stored by Cairn, only queried live</td>
+    </tr>
+    <tr>
+      <td>Recently closed tabs/sessions</td>
+      <td>Powers the "Recently closed" recovery list</td>
+      <td>Never leaves your device</td>
+    </tr>
+    <tr>
+      <td>Workspace names, tabs, notes, tags you create</td>
+      <td>The core feature — saved workspaces</td>
+      <td>Stored locally only, on your device</td>
+    </tr>
+    <tr>
+      <td>Extension settings</td>
+      <td>Your preferences (theme, font, search sources, thresholds, etc.)</td>
+      <td>Stored locally only, on your device</td>
+    </tr>
+  </table>
+
+  <p>
+    Cairn does not run any content script on any webpage, does not track
+    your activity, does not use analytics or crash-reporting SDKs, and
+    does not communicate with any Cairn-operated server — because there is
+    no Cairn-operated server. Everything above lives in
+    <code>chrome.storage.local</code>, which is private to your browser
+    profile and is deleted if you uninstall the extension or clear its
+    site data.
+  </p>
+
+  <h2>The one optional exception: AI workspace analysis</h2>
+  <p>
+    Cairn can optionally use an AI provider (Anthropic, OpenAI, or a
+    self-hosted/custom OpenAI-compatible endpoint) to summarize or answer
+    questions about a workspace. This feature is:
+  </p>
+  <ul>
+    <li><strong>Off by default.</strong> Nothing is sent anywhere until you go into Settings and configure a provider yourself, with your own API key.</li>
+    <li><strong>Manually triggered per request.</strong> Every AI request requires you to click "Ask AI" and then "Continue" on a privacy notice.</li>
+    <li><strong>Fully disclosed before it happens.</strong> The privacy notice lists exactly which fields — tab titles, tab URLs, and/or your notes — will be included, based on checkboxes you control.</li>
+    <li><strong>Sent directly to the provider you chose</strong>, using your own API key, over HTTPS. Cairn has no server in the middle.</li>
+    <li><strong>Your API key is never included in exported backups.</strong></li>
+  </ul>
+  <p>
+    Chrome will separately ask your permission (a native browser prompt)
+    the first time you configure a specific AI provider, scoped only to
+    that provider's domain — requested at that moment, never at install.
+  </p>
+
+  <h2>Data Cairn does not do</h2>
+  <ul>
+    <li>Cairn does not sell or transfer user data to third parties.</li>
+    <li>Cairn does not use or transfer user data for purposes unrelated to the extension's core functionality.</li>
+    <li>Cairn does not use or transfer user data to determine creditworthiness or for lending purposes.</li>
+    <li>Cairn does not collect any data for advertising, analytics, or personalization outside of the extension itself.</li>
+  </ul>
+
+  <h2>Data retention and deletion</h2>
+  <p>All Cairn data lives in <code>chrome.storage.local</code> under your Chrome profile. You can delete it at any time via:</p>
+  <ul>
+    <li><strong>Settings → Data → Clear local data</strong> (removes everything Cairn has stored, keeps the extension installed)</li>
+    <li><strong>Settings → Data → Reset extension</strong> (returns Cairn to its just-installed state)</li>
+    <li>Uninstalling the extension, which removes all of its local storage</li>
+  </ul>
+
+  <h2>Changes to this policy</h2>
+  <p>If Cairn's data practices change, this document will be updated and the "Last updated" date above will reflect the change.</p>
+
+  <div class="footer">
+    Questions about this policy or Cairn's data handling:
+    <a href="mailto:apequaltowork@gmail.com">apequaltowork@gmail.com</a>
+    &nbsp;·&nbsp; <a href="../support/">Support</a>
+    &nbsp;·&nbsp; <a href="../">Home</a>
+  </div>
+</div>
+</body>
+</html>

@@ -60,7 +60,13 @@
     text-transform: uppercase; color: var(--accent); background: #f3e1d8;
     padding: 6px 14px; border-radius: 999px; margin-bottom: 22px;
   }
-  .hero h1 { font-size: 44px; line-height: 1.16; font-weight: 700; margin: 0 0 18px; max-width: 780px; margin-left: auto; margin-right: auto; }
+  .hero h1 { font-size: 50px; line-height: 1.14; font-weight: 700; margin: 0 0 16px; max-width: 780px; margin-left: auto; margin-right: auto; }
+  .hero .accent { color: var(--accent); }
+  /* Keeps "guilt-free." from breaking at its hyphen on narrow screens. */
+  .hero h1 .nb { white-space: nowrap; }
+  /* Bookmarks comparison, demoted from the headline to a supporting line. */
+  .hero .compare-line { font-size: 14px; color: var(--sub); font-weight: 500; margin: 0 0 16px; }
+  .hero .compare-line s { color: #b6ae9d; }
   .hero .sub { font-size: 18px; color: var(--sub); max-width: 560px; margin: 0 auto 32px; }
   .hero-actions { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 56px; }
   .hero-shot {
@@ -236,7 +242,8 @@
   footer a:hover { color: var(--ink); }
 
   @media (max-width: 760px) {
-    .hero h1 { font-size: 32px; }
+    .hero h1 { font-size: 31px; }
+    .hero .compare-line { font-size: 13px; }
     .steps { grid-template-columns: 1fr; }
     .feature-row, .feature-row:nth-child(even) { flex-direction: column; }
     .feature-copy { flex: none; }
@@ -265,8 +272,8 @@
 
 <header class="hero">
   <div class="container">
-    <span class="eyebrow">Workspaces</span>
-    <h1>Bookmarks are for pages you'll want someday.<br>Cairn is for what you're working on right now.</h1>
+    <p class="compare-line"><s>Bookmarks are for pages you'll want someday.</s> Cairn is for right now.</p>
+    <h1>Close 30 tabs <span class="nb">guilt-free.</span><br>Get them <span class="accent">all back</span> later.</h1>
     <p class="sub">Save all your open tabs as a named workspace, close everything, and get it all back in one click. Local-first — no account, no server, no telemetry.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/nhjinpljinhggphpohdjlgkbjkabhkhh" target="_blank" rel="noopener">Add to Chrome</a>

@@ -74,6 +74,11 @@
     box-shadow: 0 40px 80px -30px rgba(43,40,34,0.35), 0 0 0 1px rgba(43,40,34,0.06);
   }
   .hero-shot img { display: block; width: 100%; height: auto; }
+  /* The loop already contains its own drop-shadowed browser window sitting on
+     page-coloured space, so the frame's card styling would read as an empty
+     card around it. Drop the frame when it holds the video. */
+  .hero-shot.is-video { border-radius: 0; overflow: visible; box-shadow: none; }
+  .hero-video { display: block; width: 100%; height: auto; }
 
   /* Problem band */
   .problem { padding: 72px 0; text-align: center; }
@@ -298,7 +303,15 @@
     <div class="hero-actions">
       <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/nhjinpljinhggphpohdjlgkbjkabhkhh" target="_blank" rel="noopener">Add to Chrome</a>
     </div>
-    <div class="hero-shot"><img src="images/screenshot-1-dashboard.png" alt="Cairn dashboard showing recent workspaces and browser insights"></div>
+    <div class="hero-shot is-video">
+      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline
+             poster="images/hero-loop-poster.jpg"
+             aria-label="Tabs closing into a saved Cairn workspace, then restoring">
+        <source src="videos/hero-loop.webm" type="video/webm">
+        <source src="videos/hero-loop.mp4" type="video/mp4">
+        <img src="images/screenshot-1-dashboard.png" alt="Cairn dashboard showing recent workspaces and browser insights">
+      </video>
+    </div>
   </div>
 </header>
 
@@ -544,6 +557,14 @@
 </button>
 
 <script>
+// Hold the hero loop on its first frame for anyone who asked for less motion.
+(function () {
+  var v = document.getElementById('heroVideo');
+  if (!v) return;
+  var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq && mq.matches) { v.removeAttribute('autoplay'); v.pause(); }
+})();
+
 (function () {
   var btn = document.getElementById('toTop');
   if (!btn) return;

@@ -237,6 +237,32 @@
   .compare .card p { margin: 0; font-size: 15px; }
 
   /* Final CTA */
+  /* Video preview — a poster that links out, no embed. */
+  .video-card {
+    position: relative; display: block; max-width: 760px; margin: 0 auto;
+    border-radius: 16px; overflow: hidden; text-decoration: none;
+    box-shadow: 0 26px 54px -22px rgba(43,40,34,.34), 0 0 0 1px rgba(43,40,34,.06);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .video-card:hover { transform: translateY(-3px); box-shadow: 0 34px 64px -22px rgba(43,40,34,.40), 0 0 0 1px rgba(43,40,34,.08); }
+  .video-card img { display: block; width: 100%; height: auto; }
+  .video-play {
+    position: absolute; left: 50%; top: 50%; width: 88px; height: 88px; margin: -44px 0 0 -44px;
+    border-radius: 50%; background: rgba(194,107,60,.95); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 12px 28px -8px rgba(43,40,34,.45);
+    transition: transform .25s ease, background .25s ease;
+  }
+  .video-card:hover .video-play { transform: scale(1.08); background: var(--accent-hover); }
+  .video-play svg { width: 40px; height: 40px; margin-left: 5px; }
+  .video-meta {
+    position: absolute; left: 16px; bottom: 16px; background: rgba(43,40,34,.86); color: #fff;
+    font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: 999px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .video-card, .video-card:hover, .video-play { transition: none; transform: none; }
+  }
+
   .cta-band { text-align: center; padding: 88px 0; }
   .cta-band h2 { font-size: 32px; margin: 0 0 14px; }
   .cta-band p { color: var(--sub); font-size: 16px; margin: 0 0 28px; }
@@ -532,6 +558,27 @@
   </div>
 </section>
 
+<section class="section" id="watch">
+  <div class="container">
+    <div class="section-head">
+      <h2>Prefer to watch?</h2>
+      <p>The whole story in under a minute.</p>
+    </div>
+    <!-- Deliberately a link to a static poster, not a YouTube iframe: an embed
+         would load third-party tracking on a site whose whole pitch is "no
+         telemetry", and costs ~1MB. This costs 45KB and loads nothing. -->
+    <a class="video-card" href="https://www.youtube.com/watch?v=fvWrDqO2-_A"
+       target="_blank" rel="noopener"
+       aria-label="Watch the Cairn story video on YouTube (opens in a new tab)">
+      <img src="images/video-preview.jpg" alt="">
+      <span class="video-play" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+      <span class="video-meta">Watch on YouTube · 0:52</span>
+    </a>
+  </div>
+</section>
+
 <section class="cta-band">
   <div class="container">
     <h2>Find your way back to what you were doing.</h2>
@@ -544,6 +591,7 @@
   <div class="container">
     <span>© 2026 Cairn</span>
     <span>
+      <a href="https://www.youtube.com/watch?v=fvWrDqO2-_A" target="_blank" rel="noopener">Video</a>
       <a href="privacy/">Privacy</a>
       <a href="support/">Support</a>
       <a href="mailto:apequaltowork@gmail.com">Contact</a>

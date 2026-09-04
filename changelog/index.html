@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cairn — What's New</title>
+<meta name="description" content="Release notes for Cairn — what changed in each version, and when." />
+<link rel="icon" href="../favicon.png" type="image/png" />
+<style>
+  :root {
+    --accent: #c26b3c;
+    --ink: #2b2822;
+    --sub: #6b665c;
+    --bg: #fdfbf8;
+    --border: #e8e2d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    width: fit-content;
+  }
+  .brand .mark {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, #F2E6D2, #eddcc2);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(43,40,34,0.06);
+  }
+  .brand .mark span { display:block; width:10px; height:10px; border-radius:50%; background: var(--accent); }
+  .brand b { font-size: 17px; color: var(--ink); }
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  p { color: #3a362f; }
+  .lead { font-size: 16px; color: var(--sub); margin-bottom: 48px; }
+  a { color: var(--accent); }
+
+  /* One entry per release. The rule down the left ties the stack together as
+     a timeline without needing dots or dates repeated in a gutter column. */
+  .release {
+    position: relative;
+    padding: 0 0 8px 24px;
+    border-left: 2px solid var(--border);
+  }
+  .release:last-of-type { border-left-color: transparent; }
+  .release::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 7px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--border);
+  }
+  .release.is-latest::before { background: var(--accent); border-color: var(--accent); }
+
+  .release-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .version { font-size: 20px; font-weight: 700; margin: 0; }
+  .date { font-size: 13px; color: var(--sub); }
+  .tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 999px;
+    padding: 3px 9px;
+  }
+  .summary { margin: 0 0 14px; color: var(--sub); }
+
+  .changes { list-style: none; padding: 0; margin: 0 0 40px; }
+  .changes li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    color: #3a362f;
+  }
+  .changes li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 11px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: .55;
+  }
+  .changes strong { color: var(--ink); }
+
+  code { background: #f1ece2; padding: 1px 6px; border-radius: 4px; font-size: 0.9em; }
+  .footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--sub); font-size: 13px; }
+
+  @media (max-width: 520px) {
+    .wrap { padding: 44px 20px 72px; }
+    h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="../">
+    <span class="mark"><span></span></span>
+    <b>Cairn</b>
+  </a>
+
+  <h1>What's New</h1>
+  <p class="lead">
+    Every Cairn release, newest first. Chrome updates extensions on its own
+    schedule, so it can take a day or two before a new version reaches you.
+  </p>
+
+  <div class="release is-latest">
+    <div class="release-head">
+      <h2 class="version">1.2.0</h2>
+      <span class="tag">Latest</span>
+      <span class="date">September 3, 2026</span>
+    </div>
+    <p class="summary">Choose exactly which tabs go into a workspace.</p>
+    <ul class="changes">
+      <li>
+        <strong>Pick your tabs when saving.</strong> Saving a workspace used to
+        take everything open. Now you can choose — keep <em>All tabs</em>, or
+        switch to <em>Choose tabs</em> and tick just the ones you want, with
+        select-all and clear. All tabs stays the default, so nothing changes
+        unless you want it to.
+      </li>
+      <li>
+        <strong>Works when updating, too.</strong> The same picker appears on
+        <em>Update workspace with current tabs</em>, so you can refresh a
+        workspace from part of your window instead of all of it.
+      </li>
+      <li>
+        <strong>Live counts.</strong> The tab and group totals update as you
+        tick, so you can see what you're about to save before you save it.
+      </li>
+      <li>
+        <strong>Renamed.</strong> Cairn is now listed as
+        &ldquo;Cairn — Tab Manager, Workspaces &amp; Session Saver&rdquo; so
+        it's findable by what it actually does. Same extension, same data —
+        only the name on the store listing changed.
+      </li>
+    </ul>
+  </div>
+
+  <div class="release">
+    <div class="release-head">
+      <h2 class="version">1.0.0</h2>
+      <span class="date">August 25, 2026</span>
+    </div>
+    <p class="summary">First public release.</p>
+    <ul class="changes">
+      <li>
+        <strong>Workspaces.</strong> Save every open tab as a named workspace —
+        tab groups, pinned state and order all preserved — then close
+        everything and restore it in one click.
+      </li>
+      <li>
+        <strong>Universal search.</strong> One search box across open tabs,
+        saved workspaces, history, bookmarks and workspace notes.
+      </li>
+      <li>
+        <strong>Notes.</strong> Each workspace carries its own notes, next to
+        the tabs they're about.
+      </li>
+      <li>
+        <strong>Cleanup.</strong> Finds duplicate and stale tabs and suggests
+        groups from shared domains. Nothing closes or moves without you
+        confirming it.
+      </li>
+      <li>
+        <strong>Temporary tabs.</strong> Mark a tab to expire in an hour,
+        today, tomorrow or a time you pick, and get a reminder instead of
+        forgetting it in the pile.
+      </li>
+      <li>
+        <strong>Optional AI.</strong> Ask a workspace to summarise itself or
+        find themes across its tabs. Off by default, uses your own API key,
+        and shows you exactly what would be sent before anything leaves your
+        device.
+      </li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    See also: <a href="../privacy/">Privacy Policy</a>
+    &nbsp;·&nbsp; <a href="../support/">Support</a>
+    &nbsp;·&nbsp; <a href="../">Home</a>
+  </div>
+</div>
+</body>
+</html>

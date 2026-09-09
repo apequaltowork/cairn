@@ -134,8 +134,40 @@
 
   <div class="release is-latest">
     <div class="release-head">
-      <h2 class="version">1.3.0</h2>
+      <h2 class="version">1.4.0</h2>
       <span class="tag">Latest</span>
+      <span class="date">September 9, 2026</span>
+    </div>
+    <p class="summary">The tabs you never got round to saving.</p>
+    <ul class="changes">
+      <li>
+        <strong>Crash recovery.</strong> Cairn now quietly keeps track of what
+        you have open. If the browser crashes, is force-quit, or closes
+        unexpectedly, it offers those tabs back next time you open it &mdash;
+        including the ones you never saved as a workspace.
+      </li>
+      <li>
+        <strong>It offers, it doesn&rsquo;t barge in.</strong> Reopen everything,
+        save it all as a workspace, or review the list and pick. Nothing reopens
+        on its own; thirty tabs appearing unannounced would be worse than the
+        problem.
+      </li>
+      <li>
+        <strong>It knows the difference between a crash and a decision.</strong>
+        Tabs you closed on purpose are never offered back &mdash; only ones that
+        were open before the browser restarted and didn&rsquo;t return.
+      </li>
+      <li>
+        <strong>It stays on your device.</strong> Never uploaded, never records
+        incognito tabs, discarded after a week, and switchable off in Settings
+        &rarr; Recover tabs after a crash.
+      </li>
+    </ul>
+  </div>
+
+  <div class="release">
+    <div class="release-head">
+      <h2 class="version">1.3.0</h2>
       <span class="date">September 8, 2026</span>
     </div>
     <p class="summary">Cairn has a face now.</p>

@@ -142,8 +142,9 @@
     <ul class="changes">
       <li>
         <strong>Crash recovery.</strong> Cairn now quietly keeps track of what
-        you have open. If the browser crashes, is force-quit, or closes
-        unexpectedly, it offers those tabs back next time you open it &mdash;
+        you have open. If the browser restarts and your tabs don&rsquo;t come
+        back &mdash; after a crash, a force-quit, or because Chrome isn&rsquo;t
+        set to reopen them &mdash; it offers them back next time you open it,
         including the ones you never saved as a workspace.
       </li>
       <li>
@@ -153,9 +154,9 @@
         problem.
       </li>
       <li>
-        <strong>It knows the difference between a crash and a decision.</strong>
-        Tabs you closed on purpose are never offered back &mdash; only ones that
-        were open before the browser restarted and didn&rsquo;t return.
+        <strong>Tabs you close while you work are never offered back.</strong>
+        Only ones that were open when the browser last shut down and
+        didn&rsquo;t return.
       </li>
       <li>
         <strong>It stays on your device.</strong> Never uploaded, never records

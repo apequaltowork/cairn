@@ -225,6 +225,65 @@
   }
 
   /* Trust band */
+  /* Crash simulator */
+  .cr-wrap{max-width:720px;margin:0 auto;text-align:center;}
+  .cr-device{border-radius:12px;overflow:hidden;background:#dedbd6;position:relative;
+    box-shadow:0 18px 40px -16px rgba(43,40,34,.28),0 0 0 1px rgba(43,40,34,.05);
+    transition:filter .18s ease,opacity .18s ease;}
+  .cr-device.dead{filter:brightness(.28) saturate(.2);}
+  .cr-strip{display:flex;align-items:flex-end;gap:2px;padding:7px 8px 0;height:34px;overflow:hidden;}
+  .cr-tab{display:flex;align-items:center;gap:5px;height:24px;padding:0 9px;flex:1;min-width:0;max-width:132px;
+    border-radius:7px 7px 0 0;background:#e4e2df;overflow:hidden;white-space:nowrap;
+    font-size:10px;color:#6b665c;
+    transition:flex .3s cubic-bezier(.4,0,.2,1),max-width .3s cubic-bezier(.4,0,.2,1),opacity .22s ease,padding .3s ease;}
+  .cr-tab .d{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .cr-tab .t{overflow:hidden;text-overflow:ellipsis;}
+  .cr-tab.gone{flex:0;max-width:0;padding:0;opacity:0;}
+  .cr-page{height:178px;background:linear-gradient(135deg,#f4f2ee,#eae7e1);
+    display:flex;align-items:center;justify-content:center;padding:16px;position:relative;}
+  .cr-ghost{position:absolute;top:20px;left:24px;right:24px;display:flex;flex-direction:column;gap:8px;}
+  .cr-ghost i{display:block;height:7px;border-radius:4px;background:rgba(43,40,34,.07);}
+  .cr-ghost i:nth-child(1){width:42%;}
+  .cr-ghost i:nth-child(2){width:72%;}
+  .cr-ghost i:nth-child(3){width:58%;}
+  .cr-card{position:relative;}
+  .cr-card{width:100%;max-width:380px;background:#fff;border:1px solid #f0d9a8;border-radius:12px;
+    padding:14px 16px;text-align:left;opacity:0;transform:translateY(8px);
+    transition:opacity .35s ease,transform .35s ease;box-shadow:0 8px 24px -12px rgba(43,40,34,.25);}
+  .cr-card.on{opacity:1;transform:translateY(0);}
+  .cr-card h4{margin:0 0 2px;font-size:14px;color:var(--ink);}
+  .cr-card p{margin:0 0 10px;font-size:12px;color:var(--sub);}
+  .cr-acts{display:flex;gap:6px;flex-wrap:wrap;}
+  .cr-acts button{font-size:12px;padding:6px 12px;border-radius:8px;border:1px solid var(--border);
+    background:#fff;color:var(--ink);cursor:pointer;}
+  .cr-acts button.pri{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .cr-acts button.pri:hover{background:var(--accent-hover);}
+  .cr-cap{font-size:14px;color:var(--sub);margin:18px 0 14px;min-height:22px;}
+  .cr-go{font-size:14px;font-weight:600;padding:10px 22px;border-radius:10px;cursor:pointer;
+    border:1px solid var(--border);background:#fff;color:var(--ink);}
+  .cr-go:hover{border-color:#cfc7b8;}
+  @media (prefers-reduced-motion: reduce){
+    .cr-device,.cr-tab,.cr-card{transition:none;}
+  }
+
+  /* The character. He never moves under his own steam — he breathes, and his
+     expression changes. Walking him was tried and looked wrong: the drawing is
+     front-facing and was made to emote, not to travel. */
+  .cairn-guide{position:fixed;left:16px;width:104px;z-index:5;pointer-events:none;
+    transition:opacity .45s ease;opacity:0;}
+  .cairn-guide.show{opacity:1;}
+  .cairn-guide svg{width:100%;height:auto;display:block;animation:guideBreathe 4.4s ease-in-out infinite;}
+  @keyframes guideBreathe{ 0%,100%{transform:none} 50%{transform:translateY(-2px) scale(1.01)} }
+  /* Below this the margins are gone and he would sit on the words. */
+  @media (max-width:1180px){ .cairn-guide{display:none;} }
+
+  .cr-buddy{position:absolute;right:-116px;bottom:0;width:110px;pointer-events:none;
+    opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .4s ease;}
+  .cr-buddy.on{opacity:1;transform:translateY(0);}
+  .cr-buddy svg{width:100%;height:auto;display:block;}
+  .cr-wrap{position:relative;}
+  @media (max-width:900px){ .cr-buddy{display:none;} }
+
   .trust { background: #f3efe7; padding: 64px 0; }
   .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: center; }
   .trust-grid .item h4 { font-size: 16px; margin: 0 0 8px; }
@@ -264,6 +323,8 @@
   }
 
   .cta-band { text-align: center; padding: 88px 0; }
+  .cairn-canvas { display:block; margin:0 auto 8px; width:300px; height:210px; }
+  @media (max-width: 480px){ .cairn-canvas { width:240px; height:168px; } }
   .cta-band h2 { font-size: 32px; margin: 0 0 14px; }
   .cta-band p { color: var(--sub); font-size: 16px; margin: 0 0 28px; }
 
@@ -515,6 +576,36 @@
   </div>
 </section>
 
+<div class="cairn-guide" id="cairnGuide" aria-hidden="true"></div>
+
+<section class="section" id="crash">
+  <div class="container">
+    <div class="section-head">
+      <h2>The tabs you never got round to saving</h2>
+      <p>Try losing them. Go on &mdash; nothing here is real.</p>
+    </div>
+    <div class="cr-wrap">
+      <div class="cr-device" id="crDevice">
+        <div class="cr-strip" id="crStrip"></div>
+        <div class="cr-page">
+          <div class="cr-ghost" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="cr-card" id="crCard">
+            <h4 id="crCardH">9 tabs didn&rsquo;t come back</h4>
+            <p>Open before the browser restarted &middot; 40 seconds ago</p>
+            <div class="cr-acts">
+              <button type="button" class="pri" id="crReopen">Reopen all</button>
+              <button type="button">Save as workspace</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cr-buddy" id="crBuddy" aria-hidden="true"></div>
+      <p class="cr-cap" id="crCap" aria-live="polite">Eleven tabs. Not one of them saved anywhere.</p>
+      <button type="button" class="cr-go" id="crGo">Crash it</button>
+    </div>
+  </div>
+</section>
+
 <section class="trust" id="privacy">
   <div class="container">
     <div class="section-head">
@@ -582,6 +673,8 @@
 
 <section class="cta-band">
   <div class="container">
+    <canvas class="cairn-canvas" id="cairnCanvas" width="300" height="210"
+            role="img" aria-label="A cairn: five stones stacked to mark a trail."></canvas>
     <h2>Find your way back to what you were doing.</h2>
     <p>Free to install, right now.</p>
     <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/nhjinpljinhggphpohdjlgkbjkabhkhh" target="_blank" rel="noopener">Add to Chrome</a>
@@ -818,6 +911,407 @@
     if (reduced) return;
     running = true; restart();
   });
+})();
+
+/* Crash simulator — lose your tabs on purpose, then get them back.
+   Crash recovery is the hardest feature to explain and the easiest to feel,
+   so the page lets you do the losing rather than describing it. */
+(function () {
+  // Short titles on purpose: a real Chrome strip this full truncates too, and
+  // the point is that they look like your own tabs, not that you can read them.
+  var TABS = [
+    ['#c26b3c','Neon'], ['#6E7C4E','supabase'], ['#5b7ba8','Stack Ov'],
+    ['#a85b8f','Figma'], ['#c26b3c','Postgres'], ['#6E7C4E','MDN'],
+    ['#8a7b5b','Linear'], ['#5b7ba8','GitHub'], ['#a8735b','Invoice'],
+    ['#6E7C4E','Notion'], ['#5b8a7b','Calendar']
+  ];
+  var SURVIVORS = 2;
+
+  var strip = document.getElementById('crStrip');
+  var device = document.getElementById('crDevice');
+  var card = document.getElementById('crCard');
+  var cap = document.getElementById('crCap');
+  var go = document.getElementById('crGo');
+  var reopen = document.getElementById('crReopen');
+  if (!strip || !go) return;
+
+  var busy = false;
+  var timers = [];
+
+  // The delays are the story here, not decoration: the captions change over
+  // two seconds and that pacing is what explains the feature. Reduced motion
+  // switches the CSS transitions off and leaves the timing alone.
+  function after(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+
+  function build() {
+    strip.innerHTML = '';
+    TABS.forEach(function (t, i) {
+      var el = document.createElement('span');
+      el.className = 'cr-tab';
+      el.dataset.i = i;
+      el.innerHTML = '<span class="d" style="background:' + t[0] + '"></span><span class="t"></span>';
+      el.querySelector('.t').textContent = t[1];
+      strip.appendChild(el);
+    });
+  }
+
+  function tabs() { return Array.prototype.slice.call(strip.children); }
+
+  function reset() {
+    clearTimers();
+    busy = false;
+    device.classList.remove('dead');
+    card.classList.remove('on');
+    tabs().forEach(function (el) { el.classList.remove('gone'); });
+    cap.textContent = 'Eleven tabs. Not one of them saved anywhere.';
+    go.textContent = 'Crash it';
+    if (window.__cairnBuddy) window.__cairnBuddy(null);
+  }
+
+  function crash() {
+    if (busy) return;
+    busy = true;
+    go.textContent = 'Crashing…';
+    device.classList.add('dead');
+    cap.textContent = 'Chrome closed unexpectedly.';
+    if (window.__cairnBuddy) window.__cairnBuddy('panic');
+
+    after(700, function () {
+      // Chrome comes back with the couple of tabs it happened to hold on to.
+      tabs().forEach(function (el, i) { if (i >= SURVIVORS) el.classList.add('gone'); });
+      device.classList.remove('dead');
+      cap.textContent = 'Chrome restored two of them. The other nine are gone.';
+    });
+
+    after(1900, function () {
+      card.classList.add('on');
+      cap.textContent = 'Cairn had been watching the whole time.';
+      if (window.__cairnBuddy) window.__cairnBuddy('hopeful');
+      go.textContent = 'Reset';
+      busy = false;
+    });
+  }
+
+  function restore() {
+    if (busy) return;
+    busy = true;
+    card.classList.remove('on');
+    var hidden = tabs().filter(function (el) { return el.classList.contains('gone'); });
+    hidden.forEach(function (el, n) {
+      after(60 * n, function () { el.classList.remove('gone'); });
+    });
+    after(60 * hidden.length + 260, function () {
+      cap.textContent = 'All eleven back, exactly as they were. You never saved a thing.';
+      if (window.__cairnBuddy) window.__cairnBuddy('happy');
+      busy = false;
+    });
+  }
+
+  go.addEventListener('click', function () {
+    if (go.textContent === 'Reset') { reset(); return; }
+    if (card.classList.contains('on')) { reset(); return; }
+    crash();
+  });
+  reopen.addEventListener('click', restore);
+
+  build();
+  reset();
+})();
+
+/* The cairn. The product is named after one — stones stacked to mark a trail
+   so you can find your way back — and the page never showed the thing. Five
+   stones settle into place, the top one in the accent colour because that is
+   the marker you look for. Then it rests: no loop, nothing blinking. */
+(function () {
+  var cv = document.getElementById('cairnCanvas');
+  if (!cv || !cv.getContext) return;
+  var ctx = cv.getContext('2d');
+  var W = 300, H = 210;
+
+  // Bottom-heavy on purpose: a real cairn is a base you trust and a marker
+  // small enough to read from a distance.
+  var STONES = [
+    { x: 150, y: 176, w: 132, h: 34, rot: -0.02, fill: '#d3c7b0', seed: 1 },
+    { x: 145, y: 146, w: 110, h: 30, rot:  0.03, fill: '#e2d7c2', seed: 2 },
+    { x: 154, y: 120, w:  86, h: 27, rot: -0.04, fill: '#cabda5', seed: 3 },
+    { x: 147, y:  98, w:  64, h: 23, rot:  0.05, fill: '#ebe1cf', seed: 4 },
+    { x: 151, y:  79, w:  42, h: 20, rot: -0.06, fill: '#c26b3c', seed: 5 }
+  ];
+  var STAGGER = 150, RISE = 620;
+
+  function shape(s, cx, cy, scale) {
+    // An ellipse with a little per-point wander, so it reads as a stone
+    // rather than a pill. Wander is derived from the seed, not random, so the
+    // same stone is the same shape on every paint.
+    var pts = [], n = 14;
+    for (var i = 0; i < n; i++) {
+      var a = (i / n) * Math.PI * 2;
+      var wob = 1 + 0.07 * Math.sin(a * 3 + s.seed * 1.7) + 0.04 * Math.cos(a * 5 + s.seed);
+      pts.push([Math.cos(a) * (s.w / 2) * wob, Math.sin(a) * (s.h / 2) * wob]);
+    }
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(s.rot);
+    ctx.scale(scale, scale);
+    ctx.beginPath();
+    for (var j = 0; j < n; j++) {
+      var p = pts[j], q = pts[(j + 1) % n];
+      var mx = (p[0] + q[0]) / 2, my = (p[1] + q[1]) / 2;
+      if (j === 0) ctx.moveTo(mx, my);
+      else ctx.quadraticCurveTo(p[0], p[1], mx, my);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function easeOutBack(t) {
+    var c = 1.24;
+    return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2);
+  }
+
+  function draw(elapsed) {
+    ctx.clearRect(0, 0, W, H);
+
+    var settled = 0;
+    for (var i = 0; i < STONES.length; i++) {
+      var s = STONES[i];
+      var t = (elapsed - i * STAGGER) / RISE;
+      if (t <= 0) continue;
+      if (t >= 1) { t = 1; settled++; }
+      var e = easeOutBack(t);
+      var y = s.y + (1 - e) * 46;
+      ctx.globalAlpha = Math.min(1, t * 2.6);
+      ctx.fillStyle = s.fill;
+      shape(s, s.x, y, 0.82 + 0.18 * e);
+    }
+
+    // The ground shadow arrives with the base stone and never competes with it.
+    ctx.globalAlpha = Math.min(0.16, Math.max(0, (elapsed - 120) / 900) * 0.16);
+    ctx.fillStyle = '#2b2822';
+    ctx.beginPath();
+    ctx.ellipse(150, 195, 76, 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+
+    return settled === STONES.length;
+  }
+
+  function fit() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = W * dpr;
+    cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var started = false, raf = 0;
+
+  function run() {
+    var t0 = performance.now();
+    (function step(now) {
+      var done = draw(now - t0);
+      // Stops for good once stacked. A cairn that kept rebuilding itself would
+      // be a distraction sitting directly above the install button.
+      if (!done) raf = requestAnimationFrame(step);
+    })(t0);
+  }
+
+  fit();
+  if (reduced) {
+    draw(STONES.length * STAGGER + RISE);
+    return;
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting && !started) {
+        started = true;
+        io.disconnect();
+        run();
+      }
+    }, { threshold: 0.35 });
+    io.observe(cv);
+  } else {
+    run();
+  }
+
+  window.addEventListener('resize', function () {
+    cancelAnimationFrame(raf);
+    fit();
+    draw(STONES.length * STAGGER + RISE);
+  });
+})();
+</script>
+
+<script>
+function person(mood,P){
+  var eyes,brows,mouth,extras='';
+  if(mood==='happy'){
+    eyes='<path d="M-27 -4 q8 -11 16 0" stroke="#2E241E" stroke-width="4" fill="none" stroke-linecap="round"/>'+
+         '<path d="M11 -4 q8 -11 16 0" stroke="#2E241E" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    brows='<path d="M-30 -25 q9 -5 19 -1" stroke="#241C17" stroke-width="3.4" fill="none" stroke-linecap="round"/>'+
+          '<path d="M11 -26 q10 -4 19 1" stroke="#241C17" stroke-width="3.4" fill="none" stroke-linecap="round"/>';
+    mouth='<path d="M-14 13 q14 16 28 0 q-14 6 -28 0 z" fill="#7E3F31"/>'+
+          '<path d="M-14 13 q14 16 28 0" stroke="#2E241E" stroke-width="2.8" fill="none" stroke-linecap="round"/>'+
+          '<path d="M-10 13 q10 3 20 0" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>';
+  } else if(mood==='panic'){
+    eyes='<circle cx="-19" cy="-3" r="9" fill="#fff"/><circle cx="-19" cy="-3" r="4.3" fill="#241C17"/>'+
+         '<circle cx="19" cy="-3" r="9" fill="#fff"/><circle cx="19" cy="-3" r="4.3" fill="#241C17"/>';
+    brows='<path d="M-31 -28 q10 -7 20 -3" stroke="#241C17" stroke-width="3.6" fill="none" stroke-linecap="round"/>'+
+          '<path d="M11 -31 q10 -4 20 3" stroke="#241C17" stroke-width="3.6" fill="none" stroke-linecap="round"/>';
+    mouth='<ellipse cx="0" cy="18" rx="9" ry="11" fill="#7E3F31"/>'+
+          '<ellipse cx="0" cy="22" rx="5.5" ry="4.5" fill="#B85C4C" opacity=".85"/>';
+    extras='<ellipse cx="60" cy="-18" rx="6.5" ry="10" fill="#7FB6D9" opacity=".92"/>';
+  } else if(mood==='confused'){
+    eyes='<circle cx="-19" cy="-3" r="4.8" fill="#241C17"/>'+
+         '<circle cx="19" cy="-3" r="7.2" fill="#fff"/><circle cx="19" cy="-3" r="3.6" fill="#241C17"/>';
+    brows='<path d="M-31 -24 q10 -3 20 -1" stroke="#241C17" stroke-width="3.6" fill="none" stroke-linecap="round"/>'+
+          '<path d="M11 -32 q10 -2 20 5" stroke="#241C17" stroke-width="3.6" fill="none" stroke-linecap="round"/>';
+    mouth='<path d="M-12 18 q6 -7 12 0 q6 7 12 0" stroke="#2E241E" stroke-width="3.6" fill="none" stroke-linecap="round"/>';
+  } else if(mood==='hopeful'){
+    eyes='<circle cx="-19" cy="-4" r="6.8" fill="#fff"/><circle cx="-17.4" cy="-4" r="3.7" fill="#241C17"/>'+
+         '<circle cx="19" cy="-4" r="6.8" fill="#fff"/><circle cx="20.6" cy="-4" r="3.7" fill="#241C17"/>';
+    brows='<path d="M-31 -28 q10 -5 20 -1" stroke="#241C17" stroke-width="3.4" fill="none" stroke-linecap="round"/>'+
+          '<path d="M11 -29 q10 -4 20 1" stroke="#241C17" stroke-width="3.4" fill="none" stroke-linecap="round"/>';
+    mouth='<ellipse cx="0" cy="16" rx="6.5" ry="7.5" fill="#7E3F31"/>';
+  } else {
+    eyes='<circle cx="-19" cy="-3" r="4.6" fill="#241C17"/><circle cx="19" cy="-3" r="4.6" fill="#241C17"/>';
+    brows='<path d="M-30 -25 q9 -3 19 -1" stroke="#241C17" stroke-width="3.4" fill="none" stroke-linecap="round"/>'+
+          '<path d="M11 -25 q10 -2 19 1" stroke="#241C17" stroke-width="3.4" fill="none" stroke-linecap="round"/>';
+    mouth='<path d="M-11 14 q11 9 22 0" stroke="#2E241E" stroke-width="3.6" fill="none" stroke-linecap="round"/>';
+  }
+  return ''+
+  '<svg viewBox="-140 -120 280 490" xmlns="http://www.w3.org/2000/svg">'+
+    '<defs>'+
+      '<linearGradient id="'+P+'jkt" x1="0" y1="0" x2=".45" y2="1"><stop offset="0%" stop-color="#9AA882"/><stop offset="100%" stop-color="#7C8A66"/></linearGradient>'+
+      '<linearGradient id="'+P+'jkt2" x1="0" y1="0" x2=".45" y2="1"><stop offset="0%" stop-color="#8D9B76"/><stop offset="100%" stop-color="#6E7C58"/></linearGradient>'+
+      '<linearGradient id="'+P+'jean" x1="0" y1="0" x2=".3" y2="1"><stop offset="0%" stop-color="#414C5B"/><stop offset="100%" stop-color="#333C49"/></linearGradient>'+
+      '<radialGradient id="'+P+'skin" cx="38%" cy="30%" r="76%"><stop offset="0%" stop-color="#F6CDA6"/><stop offset="64%" stop-color="#EDBB8E"/><stop offset="100%" stop-color="#DCA478"/></radialGradient>'+
+      '<radialGradient id="'+P+'lens" cx="34%" cy="26%" r="76%"><stop offset="0%" stop-color="#fff" stop-opacity=".40"/><stop offset="60%" stop-color="#fff" stop-opacity=".08"/><stop offset="100%" stop-color="#fff" stop-opacity=".02"/></radialGradient>'+
+    '</defs>'+
+    '<ellipse cx="0" cy="345" rx="76" ry="11" fill="#2b2822" opacity=".10"/>'+
+    '<path d="M-34 196 L-8 196 L-11 318 L-36 318 Z" fill="url(#'+P+'jean)"/>'+
+    '<path d="M8 196 L34 196 L36 318 L11 318 Z" fill="url(#'+P+'jean)"/>'+
+    '<rect x="-37" y="300" width="27" height="13" rx="4" fill="#2B333E"/>'+
+    '<rect x="10" y="300" width="27" height="13" rx="4" fill="#2B333E"/>'+
+    '<path d="M-38 311 q-19 3 -21 15 l-1 7 q0 3 4 3 L-8 336 L-8 311 Z" fill="#FAF8F4"/>'+
+    '<path d="M-56 320 q-3 4 -3 8 l14 1 q0 -6 3 -9 Z" fill="#EDE8DF"/>'+
+    '<rect x="-61" y="334" width="53" height="8" rx="4" fill="#CFC8BA"/>'+
+    '<path d="M-30 314 l4 17" stroke="#C26B3C" stroke-width="4" stroke-linecap="round"/>'+
+    '<path d="M11 311 L38 311 q19 3 21 15 l1 7 q0 3 -4 3 L11 336 Z" fill="#FAF8F4"/>'+
+    '<path d="M56 320 q3 4 3 8 l-14 1 q0 -6 -3 -9 Z" fill="#EDE8DF"/>'+
+    '<rect x="8" y="334" width="53" height="8" rx="4" fill="#CFC8BA"/>'+
+    '<path d="M26 314 l-4 17" stroke="#C26B3C" stroke-width="4" stroke-linecap="round"/>'+
+    '<path d="M-32 74 q32 -9 64 0 L34 200 q-34 9 -68 0 Z" fill="#2E3138"/>'+
+    '<path d="M-30 72 q-16 3 -22 14 L-56 206 q14 6 28 6 L-12 208 L-16 78 Z" fill="url(#'+P+'jkt)"/>'+
+    '<path d="M30 72 q16 3 22 14 L56 206 q-14 6 -28 6 L12 208 L16 78 Z" fill="url(#'+P+'jkt2)"/>'+
+    '<path d="M-16 78 L-12 208 L-24 206 L-30 84 Z" fill="#8A986F" opacity=".55"/>'+
+    '<path d="M16 78 L12 208 L24 206 L30 84 Z" fill="#657350" opacity=".45"/>'+
+    '<path d="M-52 86 q-14 6 -17 22 L-76 176 q10 8 22 6 L-40 118 Z" fill="url(#'+P+'jkt)"/>'+
+    '<path d="M52 86 q14 6 17 22 L76 176 q-10 8 -22 6 L40 118 Z" fill="url(#'+P+'jkt2)"/>'+
+    '<circle cx="-64" cy="188" r="12.5" fill="#EDBB8E"/>'+
+    '<circle cx="64" cy="188" r="12.5" fill="#EDBB8E"/>'+
+    '<circle cx="-18" cy="120" r="3.2" fill="#5E6B4C"/>'+
+    '<circle cx="-18" cy="152" r="3.2" fill="#5E6B4C"/>'+
+    '<circle cx="-18" cy="184" r="3.2" fill="#5E6B4C"/>'+
+    '<rect x="-13" y="38" width="26" height="30" rx="12" fill="#DCA478"/>'+
+    '<circle cx="-53" cy="0" r="9.5" fill="#E2AC7E"/><circle cx="53" cy="0" r="9.5" fill="#E2AC7E"/>'+
+    '<circle cx="0" cy="-4" r="53" fill="url(#'+P+'skin)"/>'+
+    '<path d="M-53 -6 C-55 -46 -32 -62 0 -62 C34 -62 56 -46 53 -6 C46 -30 30 -38 6 -37 C-16 -36 -40 -28 -53 -6 Z" fill="#241C17"/>'+
+    '<path d="M4 -58 q20 -14 33 -4 q-15 -3 -24 4 q-6 5 -9 9 Z" fill="#241C17"/>'+
+    '<path d="M-53 -6 q-3 16 2 26 q-9 -12 -8 -28 Z" fill="#241C17"/>'+
+    '<path d="M53 -6 q3 16 -2 26 q9 -12 8 -28 Z" fill="#241C17"/>'+
+    brows+eyes+mouth+
+    '<g>'+
+      '<circle cx="-19" cy="-3" r="16" fill="url(#'+P+'lens)" stroke="#D9A441" stroke-width="4"/>'+
+      '<circle cx="19" cy="-3" r="16" fill="url(#'+P+'lens)" stroke="#D9A441" stroke-width="4"/>'+
+      '<path d="M-3 -6 q3 -4 6 0" stroke="#D9A441" stroke-width="3.4" fill="none" stroke-linecap="round"/>'+
+      '<path d="M-35 -7 q-10 -2 -16 3" stroke="#D9A441" stroke-width="3.4" fill="none" stroke-linecap="round"/>'+
+      '<path d="M35 -7 q10 -2 16 3" stroke="#D9A441" stroke-width="3.4" fill="none" stroke-linecap="round"/>'+
+    '</g>'+extras+
+  '</svg>';
+}
+
+/* The character, in two places.
+
+   In the crash demo he reacts to the one moment on this page where something
+   actually happens to the reader. Down the side he keeps you company, changing
+   expression by section. He is never on screen twice: the side one steps back
+   while the crash one is on stage, so it reads as deliberate rather than as a
+   duplication bug. */
+(function () {
+  var guide = document.getElementById('cairnGuide');
+  var buddy = document.getElementById('crBuddy');
+  if (!guide && !buddy) return;
+
+  var cache = {};
+  function svg(mood) {
+    if (!cache[mood]) cache[mood] = person(mood, 'cn' + mood + '_');
+    return cache[mood];
+  }
+
+  // ---- the one in the crash demo
+  var buddyOn = false;
+  window.__cairnBuddy = function (mood) {
+    buddyOn = !!mood;
+    if (buddy) {
+      if (mood) buddy.innerHTML = svg(mood);
+      buddy.classList.toggle('on', buddyOn);
+    }
+    sync();
+  };
+
+  // ---- the one down the side
+  var SECTIONS = [
+    ['.problem', 'panic'], ['#demo', 'confused'], ['#how-it-works', 'hopeful'],
+    ['#features', 'calm'], ['#crash', 'panic'],
+    ['#privacy', 'calm'], ['.cta-band', 'happy']
+  ];
+  var mood = null, visible = false;
+
+  function paint(m) {
+    if (!guide || m === mood) return;
+    mood = m;
+    guide.innerHTML = svg(m);
+  }
+
+  function sync() {
+    if (!guide) return;
+    // Two of him on one screen looks like a bug, so the side one yields.
+    guide.classList.toggle('show', visible && !buddyOn);
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      var vh = window.innerHeight;
+      var doc = document.documentElement.scrollHeight - vh;
+      var prog = doc > 0 ? window.scrollY / doc : 0;
+
+      // He drifts down the page as you read, rather than hanging in one spot.
+      guide.style.top = (15 + prog * 48) + 'vh';
+
+      var found = null;
+      for (var i = SECTIONS.length - 1; i >= 0; i--) {
+        var el = document.querySelector(SECTIONS[i][0]);
+        if (el && el.getBoundingClientRect().top < vh * 0.55) { found = SECTIONS[i][1]; break; }
+      }
+      // He shows up once you are past the hero and gone again at the footer.
+      visible = !!found && prog > 0.04;
+      if (found) paint(found);
+      sync();
+    });
+  }
+
+  paint('calm');
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
 })();
 </script>
 

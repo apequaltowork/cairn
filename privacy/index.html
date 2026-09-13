@@ -65,7 +65,7 @@
   </a>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: September 9, 2026</p>
+  <p class="updated">Last updated: September 13, 2026</p>
 
   <p class="lead">
     Cairn is a Chrome browser extension that helps you organize open tabs
@@ -109,8 +109,10 @@
     </tr>
     <tr>
       <td>A rolling snapshot of your open tabs</td>
-      <td>So that if the browser crashes or closes unexpectedly, Cairn can offer
-          those tabs back &mdash; including ones you never saved as a workspace.
+      <td>So that if the browser restarts and your tabs don&rsquo;t come back
+          &mdash; after a crash, or because Chrome isn&rsquo;t set to reopen them
+          &mdash; Cairn can offer those tabs back, including ones you never saved
+          as a workspace.
           Keeps the last few snapshots, discards them after a week, and never
           records incognito tabs. Can be turned off in Settings.</td>
       <td>Stored locally only (<code>chrome.storage.local</code>)</td>
@@ -156,13 +158,55 @@
     that provider's domain — requested at that moment, never at install.
   </p>
 
-  <h2>Data Cairn does not do</h2>
+  <h2>How Cairn uses and shares your data</h2>
+  <p>
+    The Chrome Web Store's Limited Use requirements ask every extension to
+    state four things plainly. Here they are.
+  </p>
   <ul>
-    <li>Cairn does not sell or transfer user data to third parties.</li>
-    <li>Cairn does not use or transfer user data for purposes unrelated to the extension's core functionality.</li>
-    <li>Cairn does not use or transfer user data to determine creditworthiness or for lending purposes.</li>
-    <li>Cairn does not collect any data for advertising, analytics, or personalization outside of the extension itself.</li>
+    <li>
+      <strong>Use.</strong> Cairn uses the data above only to provide the
+      features described on this page and in the extension itself — saving,
+      restoring, searching and tidying your tabs. It is not used for any
+      other purpose, and not to determine creditworthiness or for lending.
+    </li>
+    <li>
+      <strong>Sharing and transfer.</strong> Cairn transfers your data to
+      exactly one destination, and only when you ask it to: the AI provider
+      you configured, when you press "Ask AI", using your own API key. It is
+      shared with nobody else under any circumstance — there is no
+      Cairn-operated server for it to be sent to, and no data to hand over
+      in a merger, acquisition or sale, because Cairn never holds it.
+    </li>
+    <li>
+      <strong>Advertising.</strong> Cairn does not use your data for
+      advertising of any kind — not personalized, not retargeted, not
+      interest-based. Cairn shows no ads and has no advertising partners.
+    </li>
+    <li>
+      <strong>Human review.</strong> No human reads your data. Not us, not
+      anyone. There is no server holding it and no mechanism by which anyone
+      could: everything lives in your own browser profile, and the only
+      thing that ever leaves it goes directly to a provider you chose, using
+      a key you supplied.
+    </li>
   </ul>
+
+  <h2>Consent happens in the product, not just here</h2>
+  <p>
+    Chrome's policies are explicit that disclosure must not live only in a
+    document like this one. Cairn asks in the product, at the moment it
+    matters:
+  </p>
+  <ul>
+    <li><strong>Workspace AI questions</strong> — a privacy notice listing exactly which fields will be sent, shown before every single request.</li>
+    <li><strong>Your AI provider's domain</strong> — a native Chrome permission prompt, at the moment you save that configuration, never at install.</li>
+    <li><strong>Crash recovery</strong> and the illustrated character can both be switched off in Settings.</li>
+  </ul>
+  <p>
+    Nothing on this page is a first disclosure. It is the complete version of
+    things the extension already tells you as you go.
+  </p>
 
   <h2>Data retention and deletion</h2>
   <p>All Cairn data lives in <code>chrome.storage.local</code> under your Chrome profile. You can delete it at any time via:</p>

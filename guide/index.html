@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cairn — How to use it</title>
+<meta name="description" content="A plain-English guide to Cairn: save your open tabs as workspaces, get them back after a crash, find what you lost, and tidy up." />
+<link rel="icon" href="../favicon.png" type="image/png" />
+<style>
+  :root {
+    --accent: #c26b3c;
+    --ink: #2b2822;
+    --sub: #6b665c;
+    --bg: #fdfbf8;
+    --border: #e8e2d8;
+    --sand: #F2E6D2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 40px; text-decoration: none; width: fit-content;
+  }
+  .brand .mark {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, #F2E6D2, #eddcc2);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(43,40,34,0.06);
+  }
+  .brand .mark span { display:block; width:10px; height:10px; border-radius:50%; background: var(--accent); }
+  .brand b { font-size: 17px; color: var(--ink); }
+
+  h1 { font-size: 30px; margin: 0 0 10px; letter-spacing: -0.01em; }
+  h2 {
+    font-size: 21px; margin: 56px 0 8px; letter-spacing: -0.01em;
+    padding-top: 24px; border-top: 1px solid var(--border);
+  }
+  h3 { font-size: 16px; margin: 28px 0 6px; }
+  p { color: #3a362f; margin: 0 0 14px; }
+  .lead { font-size: 17px; color: var(--sub); margin-bottom: 8px; }
+  a { color: var(--accent); }
+
+  .toc {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 24px; margin: 36px 0 8px;
+  }
+  .toc p {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--sub); margin: 0 0 10px;
+  }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { margin-bottom: 5px; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 8px; color: #3a362f; }
+  ol.steps { counter-reset: step; list-style: none; padding-left: 0; }
+  ol.steps li { position: relative; padding-left: 38px; margin-bottom: 12px; }
+  ol.steps li::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 0; top: 1px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--sand); color: #6b4a2f;
+    font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .key {
+    display: inline-block; padding: 1px 7px; border-radius: 5px;
+    background: #fff; border: 1px solid var(--border);
+    box-shadow: 0 1px 0 var(--border);
+    font-size: 13px; font-weight: 600; white-space: nowrap;
+  }
+
+  .note {
+    background: #fff; border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 18px 0;
+  }
+  .note p:last-child { margin-bottom: 0; }
+  .note strong { color: var(--ink); }
+
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--sub); font-weight: 600; }
+  td:first-child { font-weight: 600; }
+  .tbl-scroll { overflow-x: auto; }
+
+  .footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--sub); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="../">
+    <span class="mark"><span></span></span>
+    <b>Cairn</b>
+  </a>
+
+  <h1>How to use Cairn</h1>
+  <p class="lead">
+    Cairn remembers what you had open, so you can close everything without
+    losing your place. No account, no sign-up. This page explains everything
+    it does, in plain English.
+  </p>
+
+  <div class="toc">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#open">Opening Cairn</a></li>
+      <li><a href="#save">Save what you&rsquo;re working on</a></li>
+      <li><a href="#restore">Bring it all back</a></li>
+      <li><a href="#crash">If Chrome closes on you</a></li>
+      <li><a href="#find">Find something you&rsquo;ve lost</a></li>
+      <li><a href="#tidy">Tidy up the mess</a></li>
+      <li><a href="#temporary">Tabs that remind you to close them</a></li>
+      <li><a href="#notes">Notes on a workspace</a></li>
+      <li><a href="#copy">Keep a copy of everything</a></li>
+      <li><a href="#character">The little character</a></li>
+      <li><a href="#settings">Settings worth knowing about</a></li>
+      <li><a href="#shortcuts">Keyboard shortcuts</a></li>
+      <li><a href="#privacy">Where your information goes</a></li>
+      <li><a href="#stuck">If something isn&rsquo;t working</a></li>
+    </ol>
+  </div>
+
+  <h2 id="open">Opening Cairn</h2>
+  <p>
+    Click the Cairn icon in your Chrome toolbar, or press
+    <span class="key">Ctrl</span> + <span class="key">Shift</span> +
+    <span class="key">Space</span> &mdash; on a Mac, <span class="key">&#8984;</span> +
+    <span class="key">Shift</span> + <span class="key">Space</span>.
+  </p>
+  <p>
+    Cairn opens in a panel down the side of the window, next to whatever you
+    were reading. It doesn&rsquo;t take over a tab, and it doesn&rsquo;t
+    disappear when you click back on the page.
+  </p>
+  <p>Along the top of the panel there are four buttons:</p>
+  <div class="tbl-scroll">
+  <table>
+    <tr><td>Home</td><td>Where you left off, your recent workspaces, and a few observations about the state of your browser.</td></tr>
+    <tr><td>Workspaces</td><td>Everything you have saved.</td></tr>
+    <tr><td>Browser</td><td>Every tab you have open right now.</td></tr>
+    <tr><td>Cleanup</td><td>Duplicates, forgotten tabs, and things worth grouping.</td></tr>
+  </table>
+  </div>
+  <p>The search box above them works from anywhere.</p>
+
+  <h2 id="save">Save what you&rsquo;re working on</h2>
+  <p>
+    A <strong>workspace</strong> is just a name and a set of tabs.
+    &ldquo;Kitchen renovation.&rdquo; &ldquo;Tax return.&rdquo;
+    &ldquo;Monday&rsquo;s meeting.&rdquo; Open it again and those tabs come
+    back.
+  </p>
+  <ol class="steps">
+    <li>Get your tabs the way you want to remember them.</li>
+    <li>Go to <strong>Workspaces</strong> and click <strong>+ New Workspace</strong>.</li>
+    <li>Type a name. Cairn tells you how many tabs it is about to save.</li>
+    <li>Click <strong>Save Workspace</strong>. Now you can close the lot.</li>
+  </ol>
+  <p>
+    Cairn remembers each tab&rsquo;s title, address, icon, whether it was
+    pinned, and which coloured group it was in. Chrome&rsquo;s own settings
+    pages are skipped, because Chrome does not let any extension reopen
+    those.
+  </p>
+
+  <h2 id="restore">Bring it all back</h2>
+  <p>
+    Click <strong>Continue</strong> on any workspace. Every tab opens again,
+    in the same groups, with the pinned ones still pinned.
+  </p>
+  <p>
+    Don&rsquo;t want all of it? Open the workspace first and pick out the tabs
+    you actually need. You can also add the tab you are looking at to a
+    workspace you already saved, rename a tab to something more useful than
+    the page title, and delete ones that have gone stale.
+  </p>
+  <div class="note">
+    <p>
+      <strong>Restoring never closes anything.</strong> Your current tabs stay
+      where they are, and the workspace opens alongside them.
+    </p>
+  </div>
+
+  <h2 id="crash">If Chrome closes on you</h2>
+  <p>
+    This is the part you will be glad of one day. Cairn quietly keeps a list
+    of what you have open &mdash; including the tabs you never got around to
+    saving.
+  </p>
+  <p>
+    If Chrome crashes, or the machine restarts overnight, open Cairn and
+    there will be a card at the top: <em>&ldquo;9 tabs didn&rsquo;t come
+    back.&rdquo;</em> From there you can:
+  </p>
+  <ul>
+    <li><strong>Reopen all</strong> &mdash; everything, immediately.</li>
+    <li><strong>Review</strong> &mdash; tick the ones you want.</li>
+    <li><strong>Save as workspace</strong> &mdash; keep them properly this time.</li>
+  </ul>
+  <p>
+    The list never leaves your computer, and Incognito tabs are never recorded
+    at all. You can switch the whole thing off in Settings if you would rather
+    it did not watch.
+  </p>
+
+  <h2 id="find">Find something you&rsquo;ve lost</h2>
+  <p>
+    Start typing in the search box and Cairn looks in four places at once:
+    your saved workspaces, your open tabs, your browsing history, and your
+    bookmarks. Results are grouped so you can see which is which. Click one to
+    open it.
+  </p>
+  <p>You can turn any of those off in Settings if the results get noisy.</p>
+
+  <h2 id="tidy">Tidy up the mess</h2>
+  <p>The <strong>Cleanup</strong> tab finds four kinds of clutter:</p>
+  <ul>
+    <li><strong>Duplicates</strong> &mdash; the same page open five times. Keeps one, closes the rest.</li>
+    <li><strong>Old tabs</strong> &mdash; ones you have not looked at in days.</li>
+    <li><strong>Suggested groups</strong> &mdash; tabs from the same site that could be bundled together.</li>
+    <li><strong>Expired temporary tabs</strong> &mdash; see below.</li>
+  </ul>
+  <div class="note">
+    <p>
+      <strong>Nothing closes without you saying so.</strong> Cairn shows you
+      what it found and waits. And if you would like a second confirmation
+      before any tab closes, there is a setting for that too.
+    </p>
+  </div>
+
+  <h2 id="temporary">Tabs that remind you to close them</h2>
+  <p>
+    For the ones you only need for an hour. Right-click any page and choose
+    <strong>Mark as temporary</strong>, then pick when it should be done with:
+    an hour, today, tomorrow, a week, or a date you choose.
+  </p>
+  <p>
+    Cairn <em>still won&rsquo;t close it for you</em>. When the time is up a
+    reminder appears in Cleanup, and you decide &mdash; clear the reminders,
+    or keep the tabs and stop tracking them.
+  </p>
+
+  <h2 id="notes">Notes on a workspace</h2>
+  <p>
+    Every workspace has a notes box. Where you had got to, what to do next,
+    the reference number you will need again. It is plain text, it saves as
+    you type, and it comes back with the workspace.
+  </p>
+
+  <h2 id="copy">Keep a copy of everything</h2>
+  <p>
+    Cairn stores your workspaces inside Chrome, on this computer. That is
+    private, but it also means that if Chrome&rsquo;s data is cleared, or you
+    move to a new machine, it is gone. So take a copy.
+  </p>
+  <p>
+    In Settings, under <strong>Data</strong>, click <strong>Export data</strong>.
+    Cairn saves everything into one file. On a new computer, or after Chrome
+    has been cleared, <strong>Import data</strong> brings it all back.
+  </p>
+  <p>
+    The file is readable text you can open, move, or email to yourself.
+    Nothing is uploaded anywhere &mdash; there is nowhere for it to go. If you
+    have connected an AI service, your key for it is deliberately left out of
+    the file.
+  </p>
+
+  <h2 id="character">The little character</h2>
+  <p>
+    There is an illustrated figure in the background of the Home screen. He
+    reacts: a thumbs up when you save something, a worried face when you have
+    a hundred tabs open and nothing saved.
+  </p>
+  <p>
+    He never speaks, never gets in the way, and never asks you to do anything.
+    If he is not for you, there is a switch in Settings called
+    <strong>Show the Cairn character</strong>.
+  </p>
+
+  <h2 id="settings">Settings worth knowing about</h2>
+  <p>
+    Click the gear icon at the top of the Cairn panel &mdash; or right-click
+    the Cairn icon in the toolbar and choose <strong>Options</strong>.
+  </p>
+  <ul>
+    <li><strong>Confirm before closing tabs</strong> &mdash; an extra
+      &ldquo;are you sure&rdquo; before anything closes.</li>
+    <li><strong>Recover tabs after a crash</strong> &mdash; on by default.
+      Turn it off and Cairn stops keeping the list.</li>
+    <li><strong>Show the Cairn character</strong> &mdash; the figure on the
+      Home screen.</li>
+    <li><strong>Old tab threshold</strong> &mdash; how many days before a tab
+      counts as forgotten.</li>
+    <li><strong>Theme colours and font</strong> &mdash; light, dark, or follow
+      your system, plus a choice of typefaces.</li>
+    <li><strong>Search sources</strong> &mdash; which of history, bookmarks
+      and workspaces to include.</li>
+    <li><strong>Clear local data</strong> and <strong>Reset extension</strong>
+      &mdash; both wipe everything Cairn has stored, and neither can be
+      undone.</li>
+  </ul>
+
+  <h2 id="shortcuts">Keyboard shortcuts</h2>
+  <div class="tbl-scroll">
+  <table>
+    <tr><th>Shortcut</th><th>Does</th></tr>
+    <tr>
+      <td><span class="key">Ctrl</span> + <span class="key">Shift</span> + <span class="key">Space</span></td>
+      <td>Open Cairn</td>
+    </tr>
+    <tr>
+      <td><span class="key">Ctrl</span> + <span class="key">Shift</span> + <span class="key">K</span></td>
+      <td>Open the command palette &mdash; type what you want instead of clicking for it</td>
+    </tr>
+    <tr>
+      <td><span class="key">Esc</span></td>
+      <td>Close whatever is open</td>
+    </tr>
+  </table>
+  </div>
+  <p>
+    On a Mac, use <span class="key">&#8984;</span> in place of
+    <span class="key">Ctrl</span>. If a shortcut does nothing, another
+    extension has probably claimed it &mdash; you can reassign it at
+    <strong>chrome://extensions/shortcuts</strong>.
+  </p>
+  <p>There is a right-click menu on any page too:</p>
+  <ul>
+    <li><strong>Save tab to Cairn</strong> &mdash; adds the page you are on to a workspace.</li>
+    <li><strong>Mark as temporary</strong> &mdash; sets it to remind you later.</li>
+    <li>Select some text first, and you also get <strong>Search &ldquo;&hellip;&rdquo; in Cairn</strong>
+      and <strong>Save &ldquo;&hellip;&rdquo; as a note</strong>.</li>
+  </ul>
+
+  <h2 id="privacy">Where your information goes</h2>
+  <p>
+    Nowhere. There is no Cairn account and no Cairn server. Your workspaces,
+    notes and settings live in Chrome on your own computer, and they are
+    deleted if you uninstall.
+  </p>
+  <p>
+    One thing can leave your computer, and only because you asked: an AI
+    request, if you have connected an AI service of your own and pressed the
+    button that sends one. Cairn tells you exactly what it is about to send,
+    every time.
+  </p>
+  <p>
+    The full details are in the <a href="../privacy/">privacy policy</a>.
+  </p>
+
+  <h2 id="stuck">If something isn&rsquo;t working</h2>
+  <ul>
+    <li><strong>A tab didn&rsquo;t come back.</strong> Chrome will not let
+      extensions reopen its own settings pages, and some links simply stop
+      working over time. Cairn skips those and tells you how many it
+      skipped.</li>
+    <li><strong>Old tabs look wrong.</strong> Chrome does not tell extensions
+      when a tab was first opened, so Cairn uses the last time you looked at
+      it. Tabs restored from a previous session can seem older than they
+      are.</li>
+    <li><strong>Your workspaces vanished.</strong> Almost always Chrome&rsquo;s
+      data for the extension was cleared. This is the reason to keep a
+      backup.</li>
+  </ul>
+  <p>
+    Anything else, <a href="../support/">get in touch</a> &mdash; questions and
+    ideas are both welcome.
+  </p>
+
+  <div class="footer">
+    See also: <a href="../support/">Support</a>
+    &nbsp;&middot;&nbsp; <a href="../changelog/">What&rsquo;s New</a>
+    &nbsp;&middot;&nbsp; <a href="../privacy/">Privacy Policy</a>
+    &nbsp;&middot;&nbsp; <a href="../">Home</a>
+  </div>
+</div>
+</body>
+</html>

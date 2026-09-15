@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download, Film } from 'lucide-react';
-import { CHROME_STORE_URL, PAGES } from '../data/cairnData';
+import { CHROME_STORE_URL, PAGES, PUBLISHED_VERSION } from '../data/cairnData';
 
 interface NavbarProps {
   onOpenVideo?: () => void;
@@ -16,7 +16,7 @@ const NAV_LINKS = [
 ];
 
 const MOBILE_ONLY_LINKS = [
-  { href: PAGES.changelog, label: 'What’s new' },
+  { href: PAGES.changelog, label: `What’s new · v${PUBLISHED_VERSION}` },
   { href: PAGES.support, label: 'Support' },
 ];
 
@@ -80,22 +80,32 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenVideo }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Brand Logo & Name */}
-          <a
-            href="#"
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c26b3c] rounded-xl"
-            aria-label="Cairn home"
-          >
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-[#f2e6d2] to-[#e4d4bc] p-1.5 shadow-xs border border-[#e0d6c4] group-hover:scale-105 transition-transform duration-200">
-              <img src="images/icon128.png" alt="" className="w-full h-full object-contain rounded-lg" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display font-bold text-xl tracking-tight text-[#221F1B]">Cairn</span>
-              <span className="text-[11px] text-[#7A7467] -mt-1 hidden sm:inline-block font-normal">
-                find your way back
-              </span>
-            </div>
-          </a>
+          {/* Brand logo and name, with the version that is live on the Chrome Web Store */}
+          <div className="flex items-center gap-2.5">
+            <a
+              href="#"
+              className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c26b3c] rounded-xl"
+              aria-label="Cairn home"
+            >
+              <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-[#f2e6d2] to-[#e4d4bc] p-1.5 shadow-xs border border-[#e0d6c4] group-hover:scale-105 transition-transform duration-200">
+                <img src="images/icon128.png" alt="" className="w-full h-full object-contain rounded-lg" />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-display font-bold text-xl tracking-tight text-[#221F1B]">Cairn</span>
+                <span className="text-[11px] text-[#7A7467] -mt-1 hidden sm:inline-block font-normal">
+                  find your way back
+                </span>
+              </div>
+            </a>
+            <a
+              href={PAGES.changelog}
+              className="hidden sm:inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded-full text-[11px] font-semibold text-[#5F594D] bg-[#EFE9DC] hover:bg-[#E6DECF] border border-[#DDD3C0] transition-colors"
+              aria-label={`Version ${PUBLISHED_VERSION}: see what's new`}
+              title={`Cairn ${PUBLISHED_VERSION} is the version on the Chrome Web Store. See what's new.`}
+            >
+              v{PUBLISHED_VERSION}
+            </a>
+          </div>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden xl:flex items-center gap-1 bg-[#F5F0E6]/80 backdrop-blur-md border border-[#E8E1D3] px-3 py-1.5 rounded-full shadow-2xs">

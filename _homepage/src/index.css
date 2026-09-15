@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
+    --font-editorial: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-editorial {
+  font-family: var(--font-editorial);
+}
+
+.font-sans-ui {
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1ece1;
+}
+::-webkit-scrollbar-thumb {
+  background: #cfc4b0;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b8aa92;
+}
+
+/* Subtle grain overlay */
+.bg-subtle-noise {
+  background-image: radial-gradient(rgba(43, 40, 34, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}

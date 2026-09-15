@@ -46,4 +46,6 @@ after someone presses Watch.
   structured data, all with the full `https://apequaltowork.github.io/cairn/`
   address. Change them together if the site moves to its own domain, and
   update the dates in `../sitemap.xml` when pages change.
+- **Google Search Console:** the `google-site-verification` tag in `index.html`
+  keeps the site verified. Never remove it.
 - **No paid features** on this page.

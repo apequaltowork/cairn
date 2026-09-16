@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Download, ArrowUp, Mail, Shield } from 'lucide-react';
-import { CHROME_STORE_URL, CONTACT_EMAIL, PAGES, SHORTCUTS, YOUTUBE_URL } from '../data/cairnData';
+import { CHROME_STORE_URL, CONTACT_EMAIL, PAGES, SHORTCUTS, YOUTUBE_URL, MAKER_URL, MAKER_NAME } from '../data/cairnData';
 
 export const FooterCTA: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -98,7 +98,17 @@ export const FooterCTA: React.FC = () => {
       {/* Subfooter */}
       <div className="border-t border-white/10 py-8 bg-[#14120F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#807767]">
-          <span>© 2026 Cairn</span>
+          <span>
+            © 2026 Cairn · Made by{' '}
+            <a
+              href={MAKER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#9A907E] hover:text-white underline underline-offset-2 transition-colors"
+            >
+              {MAKER_NAME}
+            </a>
+          </span>
 
           <div className="flex flex-wrap items-center justify-center gap-5">
             <a href={PAGES.guide} className="hover:text-white transition-colors">

@@ -5,6 +5,10 @@ export const YOUTUBE_ID = 'fvWrDqO2-_A';
 export const YOUTUBE_URL = `https://www.youtube.com/watch?v=${YOUTUBE_ID}`;
 export const CONTACT_EMAIL = 'apequaltowork@gmail.com';
 
+/** The maker's own site, linked from the footer so people can reach him there too. */
+export const MAKER_URL = 'https://apequaltowork.github.io/ashish-pitroda/';
+export const MAKER_NAME = 'Ashish Pitroda';
+
 /** The version live on the Chrome Web Store, shown beside the logo. Change it when a release is approved, not when it's submitted. */
 export const PUBLISHED_VERSION = '1.4.0';
 

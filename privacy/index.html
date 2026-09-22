@@ -74,7 +74,7 @@
   </a>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: September 13, 2026</p>
+  <p class="updated">Last updated: September 22, 2026</p>
 
   <p class="lead">
     Cairn is a Chrome browser extension that helps you organize open tabs
@@ -130,6 +130,27 @@
       <td>Workspace names, tabs, notes, tags you create</td>
       <td>The core feature — saved workspaces</td>
       <td>Stored locally only, on your device</td>
+    </tr>
+    <tr>
+      <td>Automatic backup files (optional, off by default)</td>
+      <td>If you turn on automatic backups, Cairn saves a copy of your
+          workspaces and notes as a file on a schedule. Chrome asks your
+          permission to save files the first time you turn it on. Cairn keeps
+          the last 10 files it wrote and only ever removes its own.</td>
+      <td>A &ldquo;Cairn Backups&rdquo; folder in your own Downloads folder. Never uploaded; AI keys are never included</td>
+    </tr>
+    <tr>
+      <td>Reminders you set</td>
+      <td>When you ask to be reminded about a workspace, Cairn stores the time
+          and, if you allowed notifications when setting your first reminder,
+          shows a desktop notification when it comes round.</td>
+      <td>Stored locally only; the notification is shown by your own computer</td>
+    </tr>
+    <tr>
+      <td>Shared workspace files</td>
+      <td>&ldquo;Share&rdquo; saves one workspace as a file, only when you press it.
+          What you do with that file is up to you.</td>
+      <td>Your Downloads folder. Cairn sends it nowhere</td>
     </tr>
     <tr>
       <td>Extension settings</td>
@@ -210,6 +231,8 @@
   <ul>
     <li><strong>Workspace AI questions</strong> — a privacy notice listing exactly which fields will be sent, shown before every single request.</li>
     <li><strong>Your AI provider's domain</strong> — a native Chrome permission prompt, at the moment you save that configuration, never at install.</li>
+    <li><strong>Saving backup files</strong> — a native Chrome permission prompt the first time you turn on automatic backups, never at install.</li>
+    <li><strong>Reminder notifications</strong> — a native Chrome permission prompt the first time you set a reminder. Saying no is fine: reminders still show inside Cairn and on its toolbar icon.</li>
     <li><strong>Crash recovery</strong> and the illustrated character can both be switched off in Settings.</li>
   </ul>
   <p>

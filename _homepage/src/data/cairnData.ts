@@ -10,7 +10,7 @@ export const MAKER_URL = 'https://apequaltowork.github.io/ashish-pitroda/';
 export const MAKER_NAME = 'Ashish Pitroda';
 
 /** The version live on the Chrome Web Store, shown beside the logo. Change it when a release is approved, not when it's submitted. */
-export const PUBLISHED_VERSION = '1.4.0';
+export const PUBLISHED_VERSION = '2.0.0';
 
 /** The site's other pages. Relative, so they resolve next to this page wherever it's hosted. */
 export const PAGES = {

@@ -129,8 +129,12 @@
       <li><a href="#find">Find something you&rsquo;ve lost</a></li>
       <li><a href="#tidy">Tidy up the mess</a></li>
       <li><a href="#temporary">Tabs that remind you to close them</a></li>
-      <li><a href="#notes">Notes on a workspace</a></li>
+      <li><a href="#notes">Notes on a workspace, notes on a tab</a></li>
+      <li><a href="#readlater">Read later</a></li>
+      <li><a href="#remind">Reminders</a></li>
+      <li><a href="#share">Send a workspace to someone</a></li>
       <li><a href="#copy">Keep a copy of everything</a></li>
+      <li><a href="#backups">Backups that happen on their own</a></li>
       <li><a href="#character">The little character</a></li>
       <li><a href="#settings">Settings worth knowing about</a></li>
       <li><a href="#shortcuts">Keyboard shortcuts</a></li>
@@ -224,7 +228,8 @@
 
   <h2 id="find">Find something you&rsquo;ve lost</h2>
   <p>
-    Start typing in the search box and Cairn looks in four places at once:
+    Press <span class="key">/</span> anywhere in Cairn to jump straight to the
+    search box. Start typing and Cairn looks in four places at once:
     your saved workspaces, your open tabs, your browsing history, and your
     bookmarks. Results are grouped so you can see which is which. Click one to
     open it.
@@ -259,11 +264,59 @@
     or keep the tabs and stop tracking them.
   </p>
 
-  <h2 id="notes">Notes on a workspace</h2>
+  <h2 id="notes">Notes on a workspace, notes on a tab</h2>
   <p>
     Every workspace has a notes box. Where you had got to, what to do next,
     the reference number you will need again. It is plain text, it saves as
     you type, and it comes back with the workspace.
+  </p>
+  <p>
+    A single tab can carry a note too, and this is the one most people end up
+    using. Open a workspace, hover any saved tab, and click the pencil on the
+    right. Write one line &mdash; &ldquo;compare with Paddle before Friday&rdquo;,
+    &ldquo;the bug is in step 3&rdquo; &mdash; and press Enter. The note appears
+    where the address used to be, and search finds the tab by it. Clear the text
+    to remove it.
+  </p>
+  <p>
+    A week later, &ldquo;Pricing &mdash; Stripe&rdquo; tells you nothing. The
+    note tells you why you kept it.
+  </p>
+
+  <h2 id="readlater">Read later</h2>
+  <p>
+    Right-click any page and choose <strong>Read later</strong>, or right-click
+    a link and choose <strong>Read this link later</strong>. You can also press
+    <span class="key">Ctrl</span> + <span class="key">K</span> and pick
+    <strong>Read this page later</strong>.
+  </p>
+  <p>
+    Everything lands in one <strong>Read later</strong> list, sitting above your
+    workspaces. When you have read something, tick it off and it leaves the list.
+  </p>
+
+  <h2 id="remind">Reminders</h2>
+  <p>
+    Open a workspace and click <strong>Remind me</strong>: later today, tomorrow
+    morning, this weekend, next week, or a time you pick yourself.
+  </p>
+  <p>
+    When it comes round, the workspace waits at the top of Overview, and the
+    Cairn icon shows how many reminders are due. If you allowed it the first
+    time you set one, your computer also shows a notification. Saying no to that
+    is fine &mdash; the other two still work.
+  </p>
+
+  <h2 id="share">Send a workspace to someone</h2>
+  <p>
+    Open a workspace and click <strong>Share</strong>. Cairn saves it as a file
+    in your downloads, which you can send however you like.
+  </p>
+  <p>
+    The other person opens Cairn, goes to <strong>Workspaces</strong>, clicks
+    <strong>Import</strong>, and picks the file. They get their own copy, with
+    the tabs, groups and notes. It is a copy, not a shared folder: changes on
+    either side stay put, and nothing is uploaded anywhere.
   </p>
 
   <h2 id="copy">Keep a copy of everything</h2>
@@ -282,6 +335,20 @@
     Nothing is uploaded anywhere &mdash; there is nowhere for it to go. If you
     have connected an AI service, your key for it is deliberately left out of
     the file.
+  </p>
+
+  <h2 id="backups">Backups that happen on their own</h2>
+  <p>
+    An export button is enough until the week you forget to press it. In
+    Settings, under <strong>Data</strong>, turn on
+    <strong>Back up automatically</strong> and choose every day or every week.
+  </p>
+  <p>
+    Cairn writes a copy into a <strong>Cairn Backups</strong> folder in your
+    downloads and keeps the last ten. The first time you turn it on, Chrome asks
+    whether Cairn may save files &mdash; that is all the permission is for.
+    <strong>Back up now</strong> makes one straight away, and Settings tells you
+    when the last one worked, or why it didn&rsquo;t.
   </p>
 
   <h2 id="character">The little character</h2>
@@ -335,8 +402,12 @@
       <td>Open the command palette &mdash; type what you want instead of clicking for it</td>
     </tr>
     <tr>
+      <td><span class="key">/</span></td>
+      <td>Jump to the search box, from anywhere in Cairn</td>
+    </tr>
+    <tr>
       <td><span class="key">Esc</span></td>
-      <td>Close whatever is open</td>
+      <td>Clear the search, then leave the box; or close whatever is open</td>
     </tr>
   </table>
   </div>
@@ -349,6 +420,7 @@
   <p>There is a right-click menu on any page too:</p>
   <ul>
     <li><strong>Save tab to Cairn</strong> &mdash; adds the page you are on to a workspace.</li>
+    <li><strong>Read later</strong> &mdash; puts the page on your reading list. On a link, it is <strong>Read this link later</strong>.</li>
     <li><strong>Mark as temporary</strong> &mdash; sets it to remind you later.</li>
     <li>Select some text first, and you also get <strong>Search &ldquo;&hellip;&rdquo; in Cairn</strong>
       and <strong>Save &ldquo;&hellip;&rdquo; as a note</strong>.</li>

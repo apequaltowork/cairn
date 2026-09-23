@@ -10,6 +10,7 @@ import { ParallaxTabStream } from './components/ParallaxTabStream';
 import { InteractiveStageDemo } from './components/InteractiveStageDemo';
 import { WorkflowSection } from './components/WorkflowSection';
 import { FeatureShowcase } from './components/FeatureShowcase';
+import { NewInTwo } from './components/NewInTwo';
 import { CrashRecovery } from './components/CrashRecovery';
 import { PrivacyVault } from './components/PrivacyVault';
 import { ComparisonSection } from './components/ComparisonSection';
@@ -45,6 +46,9 @@ export default function App() {
 
           {/* 5. Features */}
           <FeatureShowcase />
+
+          {/* 5b. What the latest version added */}
+          <NewInTwo />
 
           {/* 6. Crash recovery, the one to try for yourself */}
           <CrashRecovery />
